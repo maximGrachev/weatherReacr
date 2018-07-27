@@ -28,19 +28,19 @@ class WeatherDisplay extends Component {
   }
   render() {
     const weatherData = this.state.weatherData;
-    if (!weatherData) return <div>Loading</div>;
+    if (!weatherData) return <div className="loading">Loading...</div>;
     const weather = weatherData.weather[0];
     const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
     return (
       <div>
         <h1>
-          {weather.main} in {weatherData.name}
+          {weather.main} in <p className="cityName">{weatherData.name}</p>
           <img src={iconUrl} alt={weatherData.description} />
         </h1>
-        <p>Current: {Math.round((weatherData.main.temp-32)*50/9)/10}°</p>
-        <p>High: {Math.round((weatherData.main.temp_max-32)*50/9)/10}°</p>
-        <p>Low: {Math.round((weatherData.main.temp_min-32)*50/9)/10}°</p>
-        <p>Wind Speed: {Math.round(weatherData.wind.speed*44.704)/100} m/s</p>
+        <p>Current: {Math.round((weatherData.main.temp - 32) * 50 / 9) / 10}°</p>
+        <p>High: {Math.round((weatherData.main.temp_max - 32) * 50 / 9) / 10}°</p>
+        <p>Low: {Math.round((weatherData.main.temp_min - 32) * 50 / 9) / 10}°</p>
+        <p>Wind Speed: {Math.round(weatherData.wind.speed * 44.704) / 100} m/s</p>
       </div>
     );
   }
@@ -59,27 +59,31 @@ class App extends Component {
 
     return (
       <div className="App">
-        {PLACES.map((place, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              this.setState({ activePlace: index });
-            }}
-          >
+        <div className="buttons">
+          {PLACES.map((place, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                this.setState({ activePlace: index });
+                this.className = 'pressedButton';
+                console.log(this);
+              }}
+            >
 
-            {place.name}
-          </button>
+              {place.name}
+            </button>
         ))}
+        </div>
 
         <WeatherDisplay
-          key={activePlace}
-          zip={PLACES[activePlace].zip}
-        />
-      </div>
-    );
-  }
-}
-
-
-
-export default App;
+            key={activePlace}
+            zip={PLACES[activePlace].zip}
+          />
+        </div>
+        );
+      }
+    }
+    
+    
+    
+    export default App;

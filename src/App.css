@@ -26,3 +26,35 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.cityName{
+  display: inline;
+  color: #eb6864;
+}
+
+button{
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  color: #eb6864;
+  background-color: white;
+  margin-right: 5px;
+  margin-top: 10px;
+  outline: none;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: #eb6864;
+  color: aliceblue;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+}
+
+.loading{
+  padding-top: 10px;
+}
+
+
